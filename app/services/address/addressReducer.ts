@@ -1,6 +1,5 @@
-import {AddressValues} from './AddressService.tsx';
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {fetchAddresses} from './addressActions.ts';
+import {AddressValues, fetchAddresses} from './addressActions.ts';
 
 export interface AddressState {
   isLoading: boolean;

@@ -1,4 +1,4 @@
-import {AddressValues} from '../../services/address/AddressService.tsx';
+import {AddressValues} from '../../services/address/addressActions.ts';
 
 export function getAllEntry(addressValues: AddressValues[]) {
   let entries: Set<string> = new Set();

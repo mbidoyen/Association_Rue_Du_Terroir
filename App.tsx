@@ -9,6 +9,7 @@ import Register from './app/pages/Inscription/Inscription.tsx';
 import Login from './app/pages/Connexion/Connexion.tsx';
 import NousContacter from './app/pages/Nous_Contacter/NousContacter.tsx';
 import {Provider} from 'react-redux';
+import DashBoardUser from './app/pages/DashBoard/DashBoardUser.tsx';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +23,7 @@ function App(): React.JSX.Element {
           <Stack.Screen name="Inscription" component={Register} />
           <Stack.Screen name="Connexion" component={Login} />
           <Stack.Screen name="ContactezNous" component={NousContacter} />
+          <Stack.Screen name={'Profil'} component={DashBoardUser} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

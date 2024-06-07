@@ -2,6 +2,13 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios';
 import {BACK_URI_GET_ALL_ADDRESSES} from '../../constantes/backend_uri.tsx';
 
+export interface AddressValues {
+  id: number;
+  entry: number;
+  floor: number;
+  apartment: number;
+}
+
 export const fetchAddresses = createAsyncThunk(
   'addresses/fetchAddresses',
   async () => {

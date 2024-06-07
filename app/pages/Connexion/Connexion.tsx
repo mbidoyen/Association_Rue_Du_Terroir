@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Pressable, SafeAreaView, ScrollView, Text} from 'react-native';
 import Header from '../../components/Header/Header.tsx';
 import AuthentificationNavigation from '../../components/AuthentificationNavigation/AuthentificationNavigation.tsx';
@@ -10,14 +10,15 @@ import {zodResolver} from '@hookform/resolvers/zod';
 import connexionValidationSchema from './ConnexionValidation.tsx';
 import CustomEmailInput from '../../components/Inputs/CustomEmailInput/CustomEmailInput.tsx';
 import CustomPasswordInput from '../../components/Inputs/CustomPasswordInput/CustomPasswordInput.tsx';
-import AuthenticationService from '../../services/authentication/AuthenticationService.tsx';
-
-type Navigation = {
-  navigate: (value: string) => void;
-};
+import {useDispatch, useSelector} from 'react-redux';
+import {login} from '../../services/authentication/AuthenticationAction.ts';
+import {AppDispatch, RootState} from '../../store.ts';
+import NavigationType from '../../routes/NavigationType.ts';
 
 const Login = () => {
-  const navigation = useNavigation<Navigation>();
+  const dispatch = useDispatch<AppDispatch>();
+  const userinfo = useSelector((state: RootState) => state.auth.connected);
+  const navigation = useNavigation<NavigationType>();
   const {
     control,
     handleSubmit,
@@ -30,8 +31,21 @@ const Login = () => {
     resolver: zodResolver(connexionValidationSchema),
   });
 
-  const onSubmit = (data: any) => {
-    AuthenticationService.login(data);
+  useEffect(() => {
+    if (userinfo) {
+      navigation.navigate('Accueil');
+    }
+  }, [userinfo, navigation]);
+
+  const onSubmit = async (data: any) => {
+    try {
+      await dispatch(login(data));
+
+      // Handle successful login (e.g., navigate to a different screen)
+    } catch (error) {
+      // Handle login error (e.g., display user-friendly error message)
+      console.error('Login error:', error); // Log for debugging purposes (remove in production)
+    }
   };
 
   return (

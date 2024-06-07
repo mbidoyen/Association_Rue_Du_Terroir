@@ -47,6 +47,10 @@ const inscriptionValidationSchema = z
         onlyTextCharactersAuthorized,
         'Le nom ne peut contenir que des lettres',
       ),
+    tenant_number: z
+      .string()
+      .min(10, "Le N° d'allocataire doit contenir 10 caractères")
+      .max(10, "Le N° d'allocataire doit contenir 10 caractères"),
     entry: z.string().min(1, "Veuillez indiquer votre N° d'entrée"),
     floor: z.string().min(1, "Veuillez indiquer le N° d'étage"),
     apartment: z.string().min(1, "Veuillez indiquer le N° d'appartement"),

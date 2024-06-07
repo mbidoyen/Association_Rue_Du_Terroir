@@ -2,14 +2,11 @@ import {Pressable, Text, View} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import React from 'react';
 import styles from './AuthentificationNavigationStyle.tsx';
-
-type SwitchPage = {
-  navigate: (value: string) => void;
-};
+import NavigationType from '../../routes/NavigationType.ts';
 
 const AuthentificationNavigation = () => {
   const route = useRoute();
-  const navigation = useNavigation<SwitchPage>();
+  const navigation = useNavigation<NavigationType>();
 
   return (
     <View style={styles.container}>

@@ -65,6 +65,7 @@ const Register = () => {
   };
 
   const onSubmit = (data: any) => {
+    console.log(data);
     data.address_id = getAddressId(
       addresses,
       String(entry),
@@ -103,6 +104,12 @@ const Register = () => {
             name="firstname"
             control={control}
             placeholder="Prénom"
+          />
+
+          <CustomTextInput
+            name="tenant_number"
+            control={control}
+            placeholder="N° d'allocataire"
           />
 
           <View style={styles.doubleInputContainer}>
